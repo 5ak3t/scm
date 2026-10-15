@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use these reports or models, please cite them as below."
-title: "SCM: open, one-pass typed decisions from a Qwen3 LoRA"
+title: "SCM: rated typed decisions from a Qwen3 LoRA"
 type: software
 authors:
   - name: "5ak3t"

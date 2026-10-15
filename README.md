@@ -1,8 +1,8 @@
-# Every option scored. One forward pass. Open weights.
+# Rated typed decisions from a Qwen3 LoRA
 
-**SCM turns any text into a probability for each choice, yes/no or score, on a Qwen3 you can host.** Three LoRA sizes (1.7B, 4B, 14B), documented training data, honest benchmarks.
+**Give SCM a text and a question, and get a probability for every answer.** Pick one of K options, answer yes or no, or place the text on a scale.
 
-SCM (Sovereign Classification Model) answers typed questions about a text in one forward pass, without generating tokens: choose one of K options, answer a yes/no statement, or pick an ordinal level, with a probability for every option. This repository holds the public documents. It contains no code.
+SCM (Sovereign Classification Model) is a family of three open LoRA adapters on Qwen3: `scm-min-1.7b-v0`, `scm-mid-4b-v0` and `scm-max-14b-v0`. This repository holds the public documents. It contains no code.
 
 ## Why SCM
 
@@ -13,8 +13,6 @@ SCM is for engineers who run their own models and want something simpler. You gi
 The evidence is modest and we state it plainly. On the same data, accuracy on unseen knowledge multiple choice goes 50.5, 60.5, 71.9, 76.4 and 81.0 from 0.6B to 14B, so size is a real lever. On the external S1MB English benchmark the 14B model completes 131 of 137 benchmarks and scores 50.1 on yes/no, 32.3 on ordinal score and 96.7 on the synthetic generalization choice subsets, with a full training-overlap disclosure.
 
 SCM is not the best typed-decision model. The 14B model scores below the hosted Jev 1.13 reference on yes/no (50.1 against 64.6), choice (52.9 against 65.2 on the 51 complete benchmarks) and score (32.3 against 46.9), and below the 27B-class entries. The released weights give raw probabilities with no calibration, no abstention and no coverage guarantee. They handle at most 20 options and are not trained for very long inputs, and some training sources are non-commercial or share-alike. If you need the highest accuracy or a guarantee, use something else. If you want open, self-hosted, auditable one-pass decisions and are willing to validate them on your own data, this is what SCM is for.
-
-**Ask once. Get a probability for every option.** Typed decisions you can run, read and audit. From 1.7B to 14B: pick the size, keep the weights.
 
 ## Models (Hugging Face)
 | Release | Base | Link |
@@ -39,7 +37,7 @@ Selection-level results on open development data, mostly single-seed. The 14B mo
 ## Cite
 ```bibtex
 @misc{scm2026,
-  title        = {SCM: open, one-pass typed decisions from a Qwen3 LoRA},
+  title        = {SCM: rated typed decisions from a Qwen3 LoRA},
   author       = {5ak3t},
   year         = {2026},
   howpublished = {\url{https://github.com/5ak3t/scm}},
