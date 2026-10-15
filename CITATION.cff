@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use these reports or models, please cite them as below."
-title: "SCM: rated typed decisions from open Qwen3 models"
+title: "SCM: rated typed decisions"
 type: software
 authors:
   - name: "5ak3t"

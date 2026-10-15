@@ -1,4 +1,4 @@
-# Rated typed decisions from open Qwen3 models
+# Rated typed decisions
 
 **Give SCM a text and a question, and get a probability for every answer.** Pick one of several options, answer yes or no, or place the text on a scale.
 
@@ -62,7 +62,7 @@ Selection-level results on open development data, mostly single-seed. The 14B mo
 ## Cite
 ```bibtex
 @misc{scm2026,
-  title        = {SCM: rated typed decisions from open Qwen3 models},
+  title        = {SCM: rated typed decisions},
   author       = {5ak3t},
   year         = {2026},
   howpublished = {\url{https://github.com/5ak3t/scm}},
