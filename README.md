@@ -1,6 +1,8 @@
-# SCM: calibrated typed decisions from a Qwen3 LoRA
+# Every option scored. One forward pass. Open weights.
 
-SCM (Sovereign Classification Model) answers typed questions about a text in one forward pass, without generating tokens: choose one of K options, answer a yes/no statement, or pick an ordinal level, with a probability for every option. This repository holds the public documents. It contains no code.
+**SCM turns any text into a probability for each choice, yes/no or score, on a Qwen3 you can host.** Three LoRA sizes (1.7B, 4B, 14B), documented training data, honest benchmarks.
+
+SCM (Sovereign Classification Model) answers typed questions about a text in one forward pass, without generating tokens: choose one of K options, answer a yes/no statement, or pick an ordinal level, with a probability for every option. This repository holds the public documents. It contains no code. See the [positioning](docs/positioning.md) for who it is for, what it replaces, and where it is not the best choice.
 
 ## Models (Hugging Face)
 | Release | Base | Link |
@@ -12,6 +14,7 @@ SCM (Sovereign Classification Model) answers typed questions about a text in one
 Each repository holds a LoRA adapter only, a model card, the training-pool manifests with source licences, and the prompt module. They are experimental research releases.
 
 ## Documents
+- [Positioning and messaging](docs/positioning.md): who it is for, against what, and where it is not the best choice.
 - [Results](docs/results.md): size ladder, charts, S1MB summary.
 - [How to use the models](docs/usage.md): prompt format, option letters, order averaging, the 20-option limit.
 - [Training data and licences](docs/data-and-licences.md): sources by group, recorded licences, synthetic tickets, exclusions.
@@ -25,7 +28,7 @@ Selection-level results on open development data, mostly single-seed. The 14B mo
 ## Cite
 ```bibtex
 @misc{scm2026,
-  title        = {SCM: calibrated typed decisions from a Qwen3 LoRA in one forward pass},
+  title        = {SCM: open, one-pass typed decisions from a Qwen3 LoRA},
   author       = {5ak3t},
   year         = {2026},
   howpublished = {\url{https://github.com/5ak3t/scm}},
