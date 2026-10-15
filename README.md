@@ -25,7 +25,7 @@ Each repository holds the model weights (a small add-on to the Qwen3 base model)
 
 ## Documents
 - [Results](docs/results.md): size ladder, charts, S1MB summary.
-- [How to use the models](docs/usage.md): prompt format, option letters, order averaging, the 20-option limit.
+- [How to use the models](docs/usage.md): how to ask a question, how the answer is scored, the 20-option limit.
 - [Training data and licences](docs/data-and-licences.md): sources by group, recorded licences, synthetic tickets, exclusions.
 - [Intended use and limits](docs/intended-use.md).
 - [S1MB submission](docs/s1mb-submission.md) and the [overlap report](docs/s1mb-overlap-report.json).
@@ -50,4 +50,4 @@ A `CITATION.cff` is included.
 Report issues at https://github.com/5ak3t/scm/issues (or the Community tab of the Hugging Face repositories).
 
 ## Licence
-The documents and figures in this repository are CC BY 4.0 (see `LICENSE`). The model adapters are separate artefacts with their own terms; see [data and licences](docs/data-and-licences.md).
+The documents and figures in this repository are CC BY 4.0 (see `LICENSE`). The model weights are separate and have their own terms; see [data and licences](docs/data-and-licences.md).
