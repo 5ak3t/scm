@@ -14,6 +14,31 @@ The evidence is modest and we state it plainly. On the same data, accuracy on qu
 
 SCM is not the most accurate typed-decision model. On the same benchmark it scores below the hosted Jev 1.13 reference on yes/no questions (50.1 against 64.6), on choice questions (52.9 against 65.2) and on score questions (32.3 against 46.9), and below the 27-billion class. It gives plain probabilities with no calibration or error guarantee, handles at most 20 options per question, and some training sources are non-commercial or share-alike. If accuracy is all that matters, use the leaders. If you want an open, self-hostable model whose data and evaluation you can check, and you are willing to test it on your own data first, that is what SCM is for.
 
+## Results
+
+All figures are accuracy-style scores in percent (higher is better). The size table uses our own open test sets and one training run per size, so treat small gaps as noise. The S1MB table is an outside benchmark.
+
+**Size comparison (same data and recipe)**
+
+| Model | Questions from unseen workflows | Five in-house decision suites | Security triage (accuracy) | Security triage (balanced) |
+|---|---|---|---|---|
+| scm-min-1.7b-v0 | 60.5 | 66.3 | 57.0 | 40.4 |
+| scm-mid-4b-v0 | 71.9 | 72.1 | 57.8 | 35.9 |
+| scm-max-14b-v0 | **81.0** | **76.4** | 64.5 | **54.0** |
+
+On security triage, always answering "open an investigation" scores 71.3, so read the balanced column. The full table, including the 0.6B and 8B runs we did not publish, is in [docs/results.md](docs/results.md).
+
+**S1MB English v1: scm-max-14b-v0 against the Jev 1.13 reference** (baseline-adjusted score, 0 to 100)
+
+| | Yes/no (59 benchmarks) | Choice (51 of 57) | Score (21) | Synthetic yes/no | Synthetic choice | Synthetic score |
+|---|---|---|---|---|---|---|
+| scm-max-14b-v0 | 50.1 | 52.9 | 32.3 | 88.0 | 96.7 | 74.1 |
+| Jev 1.13 | 64.6 | 65.2 | 46.9 | 99.0 | 98.7 | 91.1 |
+
+131 of 137 benchmarks completed. The six that did not (questions with more than 20 options) are saved as failures, so the shared leaderboard shows no choice total for SCM. The 3 typed-decisions benchmarks overlap our training data; the details are in [docs/s1mb-submission.md](docs/s1mb-submission.md). Results pull request: https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/37
+
+![Accuracy against model size](docs/figures/scaling.svg)
+
 ## Models (Hugging Face)
 | Release | Base | Link |
 |---|---|---|
