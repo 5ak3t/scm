@@ -1,0 +1,39 @@
+# How to use the models
+
+SCM adapters are LoRA weights for `Qwen/Qwen3-1.7B-Base`, `Qwen3-4B-Base` and `Qwen3-14B-Base`. Each adapter's `adapter_config.json` pins the base model and its exact revision. Load the base in fp16, apply the adapter, and (optionally) merge it. There is no generation step: you run one forward pass per prompt and read one next-token logit per option.
+
+## The prompt
+Every question is shown with **all** of its options as lettered lines. The prompt is exactly:
+
+```
+The following is a multiple choice question. Choose the single best answer.
+
+<instructions>
+
+Question: <state>
+A. <option text>
+B. <option text>
+C. <option text>
+Answer:
+```
+
+- `<instructions>` is the question text (a system prompt first, if you have one). `<state>` is the text to decide about; a JSON state is inserted as compact JSON text.
+- Options are the option descriptions, in whatever order you choose to show them. Use letters A to T in order.
+- Question types: **choice** (your K candidates), **noul** (two options, the "false" meaning first and the "true" meaning second, each described in words), **score** (the ordered level descriptions, lowest first).
+
+## Scoring
+1. Tokenise the prompt and take the logits at the last position.
+2. For the letters you showed, read the logit of the token for a space followed by the letter (" A", " B", ...). These are the option scores.
+3. Take the log-softmax over just those letters.
+4. **Average over several option orders.** Score the question under four orders (the original order, the reversed order, and two cyclic shifts of the original; for two options just the original and the reversed). For each order, map the letter scores back to the original options, then average the four log-softmax vectors per option.
+5. Apply a softmax to the averaged vector (temperature 1). The result is one probability per option. For a score question, the expected score is the sum of probability times the numeric level.
+
+Averaging orders removes most of the letter-position bias; one order alone is usable but less accurate.
+
+## Limits
+- **At most 20 options** per question (letters A to T). Questions with more options must be rejected or handled outside the model; the adapters were not trained beyond 20.
+- The models were trained on prompts truncated to 1,024 tokens. Longer prompts work mechanically (we ran up to about 15,000 tokens) but are outside the training distribution and are not expected to be as accurate.
+- The released probabilities are the raw softmax. No temperature, calibration or abstention is applied, and no coverage guarantee comes with these weights.
+
+## Choosing a size
+`scm-max-14b-v0` is the most accurate by a clear margin; `scm-mid-4b-v0` is a quarter of the cost; `scm-min-1.7b-v0` is below our own development thresholds and mainly shows the scaling trend. See [results](results.md).

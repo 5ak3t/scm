@@ -1,6 +1,6 @@
 # SCM: calibrated typed decisions from a Qwen3 LoRA
 
-SCM (Sovereign Classification Model) answers typed questions about a state in one forward pass, without generating tokens: choose one of K options, answer a yes/no statement, or pick an ordinal level, with a probability for every option. This repository holds the public reports. It contains no code.
+SCM (Sovereign Classification Model) answers typed questions about a text in one forward pass, without generating tokens: choose one of K options, answer a yes/no statement, or pick an ordinal level, with a probability for every option. This repository holds the public documents. It contains no code.
 
 ## Models (Hugging Face)
 | Release | Base | Link |
@@ -9,12 +9,33 @@ SCM (Sovereign Classification Model) answers typed questions about a state in on
 | scm-mid-4b-v0 | Qwen3-4B-Base | https://huggingface.co/5ak3t/scm-mid-4b-v0 |
 | scm-max-14b-v0 | Qwen3-14B-Base | https://huggingface.co/5ak3t/scm-max-14b-v0 |
 
-Each repo holds a LoRA adapter only, a model card, the training-pool manifests with source licences, and the prompt module. They are experimental research releases.
+Each repository holds a LoRA adapter only, a model card, the training-pool manifests with source licences, and the prompt module. They are experimental research releases.
 
 ## Documents
-- [docs/technical-report.md](docs/technical-report.md): method, data, results, limitations, disclosure.
-- [docs/what-did-not-work.md](docs/what-did-not-work.md): 48 ideas that did not improve the classifier, with numbers.
-- [docs/s1mb-submission.md](docs/s1mb-submission.md): the S1MB English v1 submission, coverage and training-exposure disclosure.
+- [Results](docs/results.md): size ladder, charts, S1MB summary.
+- [How to use the models](docs/usage.md): prompt format, option letters, order averaging, the 20-option limit.
+- [Training data and licences](docs/data-and-licences.md): sources by group, recorded licences, synthetic tickets, exclusions.
+- [Intended use and limits](docs/intended-use.md).
+- [S1MB submission](docs/s1mb-submission.md) and the [overlap report](docs/s1mb-overlap-report.json).
+- [Changelog](CHANGELOG.md).
 
 ## Status
-Selection-level results on open data, mostly single-seed. The 14B model is well below the strongest S1MB entries; see the reports for what was and was not shown. Licence terms for these documents have not been set yet.
+Selection-level results on open development data, mostly single-seed. The 14B model is well below the strongest S1MB entries. Read the intended-use page before relying on these weights.
+
+## Cite
+```bibtex
+@misc{scm2026,
+  title        = {SCM: calibrated typed decisions from a Qwen3 LoRA in one forward pass},
+  author       = {5ak3t},
+  year         = {2026},
+  howpublished = {\url{https://github.com/5ak3t/scm}},
+  note         = {Version 0}
+}
+```
+A `CITATION.cff` is included.
+
+## Contact
+Report issues at https://github.com/5ak3t/scm/issues (or the Community tab of the Hugging Face repositories).
+
+## Licence
+The documents and figures in this repository are CC BY 4.0 (see `LICENSE`). The model adapters are separate artefacts with their own terms; see [data and licences](docs/data-and-licences.md).
