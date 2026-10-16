@@ -37,7 +37,7 @@ On security triage, always answering "open an investigation" scores 71.3, so rea
 | scm-max-14b-v0 (earlier release) | 50.1 | 55.4 | 32.3 | 45.9 | 45 of 164 |
 | Jev 1.13 (reference) | 64.6 | 67.2 | 46.9 | 59.6 | 17 of 165 |
 
-*Our own computation from the saved results, ordering by the leaderboard's Borda rule. The shared leaderboard may order differently. v1 results are in a draft results pull request that has not been opened yet: https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/38 (14B). The v0 results are in https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/37.
+*Our own computation from the saved results, ordering by the leaderboard's Borda rule. The shared leaderboard may order differently. v1 results (14B) are in an open results pull request awaiting review: https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/38. The v0 results are in https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/37.
 
 **Read the v1 numbers with this in mind.** v1 was trained on the training splits of 65 dataset families that S1MB benchmarks are built from (79 declared "same source family" entries), after removing inputs that matched S1MB test inputs. An audit of the final training pool still finds 304 of 15,609 English test cases with an approximate match, mostly in templated families. These are candidates, not confirmed use of test inputs, and no exact use is known. Compare with models that did not train on these families with care. Details: [docs/s1mb-submission.md](docs/s1mb-submission.md).
 

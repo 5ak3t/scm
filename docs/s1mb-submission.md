@@ -32,7 +32,7 @@ The audit report is `s1mb-overlap-report-v2.json` in the model repository (it re
 
 # Version 1 on S1MB English v1
 
-Models: https://huggingface.co/5ak3t/scm-max-14b-v1 (measured revision `b0b58112d57581a86d74054c4c604251a8a7647d`) and https://huggingface.co/5ak3t/scm-mid-4b-v1 (measured revision `39c9a74e96dca1bafd7c3e0b938d3b6476a2db97`). The cards were rewritten after measurement; the adapter weights did not change. Draft results pull request for the 14B model: https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/38 (not yet opened; the 4B pull request is not created yet).
+Models: https://huggingface.co/5ak3t/scm-max-14b-v1 (measured revision `b0b58112d57581a86d74054c4c604251a8a7647d`) and https://huggingface.co/5ak3t/scm-mid-4b-v1 (measured revision `39c9a74e96dca1bafd7c3e0b938d3b6476a2db97`). The cards were rewritten after measurement; the adapter weights did not change. Results pull request for the 14B model (open, awaiting review): https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/38. There is no pull request for the 4B model yet.
 
 Configuration (fixed before any v1 S1MB score): fp16 base with the adapter merged, four option orders averaged, temperature 1, no calibration, input limit 16,384 tokens with overflow rejected, 16 cases per call, adapter renderer `scm-joint-letters-v2` (up to 255 labels, nothing split or truncated). Each model was measured in three parallel runs of one configuration on one H100 each, 137 of 137 benchmarks complete, zero failed decisions and zero abstentions. The v0 measurements stay unchanged in the earlier pull request.
 
