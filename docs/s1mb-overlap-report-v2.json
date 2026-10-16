@@ -1,0 +1,1126 @@
+{
+ "report": "s1mb-overlap-report-v2",
+ "supersedes": "s1mb-overlap-report.json (same test cases, counts were not split by evidence strength)",
+ "model": "5ak3t/scm-max-14b-v0 (adapter trained on pool v5, 124,334 records, sha256 1cfa24bf67a145ae5fbdcc347bd5313b814f992f408ddfd13870c338109d8f5c)",
+ "test_inputs": "hotchpotch/S1MB-english-v1 @ 6aa5f39753f98eef604a2af6a61f41670c030f28, data/*/test inputs (state_json only; targets never read)",
+ "classes": {
+  "exact": "normalised test state equals a normalised training state (identical input text; says nothing about labels)",
+  "near": "both have >= 8 words and one training state contains >= 50% of the test input 8-word shingles, or the shingle Jaccard is >= 0.5",
+  "union_only": ">= 50% of the test input 8-word shingles occur somewhere in the pool but not within one training state (pooled rule of the earlier report; weakest)"
+ },
+ "confirmed_evaluation_input_matches": "none: 0 exact matches against 15,609 English test inputs. Near and union_only are approximate-match candidates, not confirmed use.",
+ "limits": "Inputs only, test targets and training labels were not compared. `near` is a lower bound for heavily templated families. The training rows are private and not republished. Qwen3 pretraining data and any other pre-fine-tuning data are not audited (unknown).",
+ "totals": {
+  "none": 15568,
+  "near": 20,
+  "union_only": 21
+ },
+ "test_cases": 15609,
+ "reconciliation_with_earlier_report": "Earlier total 101 = 90 (30 typed-decisions inputs counted once for each of its 3 benchmarks, which share one set of 100 inputs) + 11 other cases; the 41 distinct test inputs are 20 near and 21 union_only.",
+ "flagged_active_benchmarks": {
+  "banking77-choice-test-v1": {
+   "dataset": "banking77",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 2,
+   "union_only": 0
+  },
+  "clinc-choice-test-v1": {
+   "dataset": "clinc",
+   "test_inputs_in_dataset": 151,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "dbpedia-choice-test-v1": {
+   "dataset": "dbpedia",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 2,
+   "union_only": 0
+  },
+  "few-nerd-choice-test-v1": {
+   "dataset": "few_nerd",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "hh-rlhf-choice-test-v1": {
+   "dataset": "hh_rlhf",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 2,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanodbpedia-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoDBPedia",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanodbpedia-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoDBPedia",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "laya--typed-decisions-choice-test-v1": {
+   "dataset": "laya__typed_decisions",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 9,
+   "union_only": 21
+  },
+  "laya--typed-decisions-noul-test-v1": {
+   "dataset": "laya__typed_decisions",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 9,
+   "union_only": 21
+  },
+  "laya--typed-decisions-score-test-v1": {
+   "dataset": "laya__typed_decisions",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 9,
+   "union_only": 21
+  },
+  "ud-ewt-choice-test-v1": {
+   "dataset": "ud_ewt",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  }
+ },
+ "flagged_datasets_without_an_active_english_benchmark": {
+  "synthetic_relevance__nanobeir__NanoFEVER": {
+   "cases": 400,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  }
+ },
+ "retained_pool_inventory_of_declared_sources": {
+  "banking77": {
+   "records": 3000,
+   "workflows": 1
+  },
+  "clinc150": {
+   "records": 2987,
+   "workflows": 1
+  },
+  "dbpedia14": {
+   "records": 12000,
+   "workflows": 1
+  },
+  "goemotions": {
+   "records": 2203,
+   "workflows": 1
+  },
+  "ag_news": {
+   "records": 500,
+   "workflows": 1
+  },
+  "enron_spam": {
+   "records": 456,
+   "workflows": 1
+  },
+  "paws": {
+   "records": 448,
+   "workflows": 1
+  },
+  "openbookqa": {
+   "records": 500,
+   "workflows": 1
+  },
+  "aqua_rat": {
+   "records": 1500,
+   "workflows": 1
+  },
+  "civil_comments": {
+   "records": 1500,
+   "workflows": 1
+  },
+  "hh_helpful": {
+   "records": 1500,
+   "workflows": 1
+  },
+  "legalbench": {
+   "records": 9007,
+   "workflows": 45
+  },
+  "typed-decisions": {
+   "records": 724,
+   "workflows": 3
+  },
+  "math_qa": {
+   "records": 7825,
+   "workflows": 6
+  }
+ },
+ "active_benchmarks": {
+  "aegis2-noul-test-v1": {
+   "dataset": "aegis2",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "laya--ag-news-choice-test-v1": {
+   "dataset": "laya__ag_news",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "aqua-rat-choice-test-v1": {
+   "dataset": "aqua_rat",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "arc-choice-test-v1": {
+   "dataset": "arc",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "arct-choice-test-v1": {
+   "dataset": "arct",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "argument-quality-choice-test-v1": {
+   "dataset": "argument_quality",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "argument-quality-noul-test-v1": {
+   "dataset": "argument_quality",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "babi-nli-noul-test-v1": {
+   "dataset": "babi_nli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "banking77-choice-test-v1": {
+   "dataset": "banking77",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 2,
+   "union_only": 0
+  },
+  "bbq-choice-test-v1": {
+   "dataset": "bbq",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "boardgameqa-choice-test-v1": {
+   "dataset": "boardgameqa",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "canttalk-noul-test-v1": {
+   "dataset": "canttalk",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "civil-comments-noul-test-v1": {
+   "dataset": "civil_comments",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "cladder-noul-test-v1": {
+   "dataset": "cladder",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "clinc-choice-test-v1": {
+   "dataset": "clinc",
+   "test_inputs_in_dataset": 151,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "contract-nli-choice-test-v1": {
+   "dataset": "contract_nli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "corr2cause-choice-test-v1": {
+   "dataset": "corr2cause",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "creak-noul-test-v1": {
+   "dataset": "creak",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "crows-pairs-choice-test-v1": {
+   "dataset": "crows_pairs",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "dbpedia-choice-test-v1": {
+   "dataset": "dbpedia",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 2,
+   "union_only": 0
+  },
+  "defeasible-nli-choice-test-v1": {
+   "dataset": "defeasible_nli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "laya--enron-spam-noul-test-v1": {
+   "dataset": "laya__enron_spam",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "esci-choice-test-v1": {
+   "dataset": "esci",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "ethics-choice-test-v1": {
+   "dataset": "ethics",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "ethics-noul-test-v1": {
+   "dataset": "ethics",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "ethos-noul-test-v1": {
+   "dataset": "ethos",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "few-nerd-choice-test-v1": {
+   "dataset": "few_nerd",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "fol-nli-choice-test-v1": {
+   "dataset": "fol_nli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "followir-core17-noul-test-v1": {
+   "dataset": "followir_core17",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "followir-news21-noul-test-v1": {
+   "dataset": "followir_news21",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "followir-robust04-noul-test-v1": {
+   "dataset": "followir_robust04",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "go-emotions-noul-test-v1": {
+   "dataset": "go_emotions",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "gretel-pii-choice-test-v1": {
+   "dataset": "gretel_pii",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "gsm8k-choice-test-v1": {
+   "dataset": "gsm8k",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "hans-noul-test-v1": {
+   "dataset": "hans",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "hatecheck-noul-test-v1": {
+   "dataset": "hatecheck",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "hh-rlhf-choice-test-v1": {
+   "dataset": "hh_rlhf",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 2,
+   "union_only": 0
+  },
+  "hwu64-choice-test-v1": {
+   "dataset": "hwu64",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "impli-noul-test-v1": {
+   "dataset": "impli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "lexcomp-noul-test-v1": {
+   "dataset": "lexcomp",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "logical-entailment-noul-test-v1": {
+   "dataset": "logical_entailment",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "lonli-choice-test-v1": {
+   "dataset": "lonli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "massive-choice-test-v1": {
+   "dataset": "massive",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "miqa-choice-test-v1": {
+   "dataset": "miqa",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "mtop-choice-test-v1": {
+   "dataset": "mtop",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "nlsat-noul-test-v1": {
+   "dataset": "nlsat",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--amount-extraction-control-v1-choice-test-v1": {
+   "dataset": "open_jev__amount-extraction-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--amount-extraction-control-v1-noul-test-v1": {
+   "dataset": "open_jev__amount-extraction-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--browser-control-v1-choice-test-v1": {
+   "dataset": "open_jev__browser-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--citation-control-v1-choice-test-v1": {
+   "dataset": "open_jev__citation-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--context-retention-control-v1-noul-test-v1": {
+   "dataset": "open_jev__context-retention-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--customer-control-v1-choice-test-v1": {
+   "dataset": "open_jev__customer-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--customer-control-v1-noul-test-v1": {
+   "dataset": "open_jev__customer-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--customer-control-v1-score-test-v1": {
+   "dataset": "open_jev__customer-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--drone-control-v1-choice-test-v1": {
+   "dataset": "open_jev__drone-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--drone-control-v1-noul-test-v1": {
+   "dataset": "open_jev__drone-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--drone-control-v1-score-test-v1": {
+   "dataset": "open_jev__drone-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--email-selection-control-v1-choice-test-v1": {
+   "dataset": "open_jev__email-selection-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--email-selection-control-v1-noul-test-v1": {
+   "dataset": "open_jev__email-selection-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--entity-alignment-control-v1-noul-test-v1": {
+   "dataset": "open_jev__entity-alignment-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--entity-alignment-control-v1-score-test-v1": {
+   "dataset": "open_jev__entity-alignment-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--ir-control-v1-choice-test-v1": {
+   "dataset": "open_jev__ir-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--ir-control-v1-noul-test-v1": {
+   "dataset": "open_jev__ir-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--ir-control-v1-score-test-v1": {
+   "dataset": "open_jev__ir-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--mailroom-control-v1-choice-test-v1": {
+   "dataset": "open_jev__mailroom-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--mailroom-control-v1-noul-test-v1": {
+   "dataset": "open_jev__mailroom-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--painting-geometry-v1-choice-test-v1": {
+   "dataset": "open_jev__painting-geometry-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--painting-geometry-v1-noul-test-v1": {
+   "dataset": "open_jev__painting-geometry-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--painting-geometry-v1-score-test-v1": {
+   "dataset": "open_jev__painting-geometry-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--phone-extraction-control-v1-choice-test-v1": {
+   "dataset": "open_jev__phone-extraction-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--phone-extraction-control-v1-noul-test-v1": {
+   "dataset": "open_jev__phone-extraction-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--reasoning-control-v1-choice-test-v1": {
+   "dataset": "open_jev__reasoning-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--reasoning-control-v1-noul-test-v1": {
+   "dataset": "open_jev__reasoning-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--reasoning-control-v1-score-test-v1": {
+   "dataset": "open_jev__reasoning-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--silent-failure-control-v1-noul-test-v1": {
+   "dataset": "open_jev__silent-failure-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--snake-v1-choice-test-v1": {
+   "dataset": "open_jev__snake-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--snake-v1-noul-test-v1": {
+   "dataset": "open_jev__snake-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--sponsor-segment-control-v1-choice-test-v1": {
+   "dataset": "open_jev__sponsor-segment-control-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--tic-tac-toe-v1-choice-test-v1": {
+   "dataset": "open_jev__tic_tac_toe-v1",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--vizdoom-basic-v1-noul-test-v1": {
+   "dataset": "open_jev__vizdoom-basic-v1",
+   "test_inputs_in_dataset": 66,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--vizdoom-basic-v1-score-test-v1": {
+   "dataset": "open_jev__vizdoom-basic-v1",
+   "test_inputs_in_dataset": 66,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--workflow-controls-v1--agent-trace-observability-noul-test-v1": {
+   "dataset": "open_jev__workflow-controls-v1__agent_trace_observability",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--workflow-controls-v1--customer-service-noul-test-v1": {
+   "dataset": "open_jev__workflow-controls-v1__customer_service",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--workflow-controls-v1--invoice-processing-noul-test-v1": {
+   "dataset": "open_jev__workflow-controls-v1__invoice_processing",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "open-jev--workflow-controls-v1--security-incidents-noul-test-v1": {
+   "dataset": "open_jev__workflow-controls-v1__security_incidents",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "openbookqa-choice-test-v1": {
+   "dataset": "openbookqa",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "patent-similarity-score-test-v1": {
+   "dataset": "patent_similarity",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "paws-noul-test-v1": {
+   "dataset": "paws",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "plane-noul-test-v1": {
+   "dataset": "plane",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "poem-sentiment-choice-test-v1": {
+   "dataset": "poem_sentiment",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "qasper-noul-test-v1": {
+   "dataset": "qasper",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "quartz-choice-test-v1": {
+   "dataset": "quartz",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "robust-lr-choice-test-v1": {
+   "dataset": "robust_lr",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "ruletaker-noul-test-v1": {
+   "dataset": "ruletaker",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "s1mb-generalization-contextual-choice-choice-test-v1": {
+   "dataset": "s1mb-generalization-contextual-choice",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "s1mb-generalization-contextual-noul-noul-test-v1": {
+   "dataset": "s1mb-generalization-contextual-noul",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "s1mb-generalization-contextual-score-score-test-v1": {
+   "dataset": "s1mb-generalization-contextual-score",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "s1mb-generalization-diverse-choice-choice-test-v1": {
+   "dataset": "s1mb-generalization-diverse-choice",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "s1mb-generalization-diverse-noul-noul-test-v1": {
+   "dataset": "s1mb-generalization-diverse-noul",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "s1mb-generalization-diverse-score-score-test-v1": {
+   "dataset": "s1mb-generalization-diverse-score",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "scicite-choice-test-v1": {
+   "dataset": "scicite",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "scitail-noul-test-v1": {
+   "dataset": "scitail",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "scone-choice-test-v1": {
+   "dataset": "scone",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "sdoh-nli-noul-test-v1": {
+   "dataset": "sdoh_nli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "sgd-choice-test-v1": {
+   "dataset": "sgd",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "snli-choice-test-v1": {
+   "dataset": "snli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "spartqa-choice-test-v1": {
+   "dataset": "spartqa",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "stepgame-choice-test-v1": {
+   "dataset": "stepgame",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanoarguana-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoArguAna",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanoarguana-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoArguAna",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanodbpedia-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoDBPedia",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanodbpedia-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoDBPedia",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanofiqa2018-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoFiQA2018",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanofiqa2018-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoFiQA2018",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanohotpotqa-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoHotpotQA",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanohotpotqa-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoHotpotQA",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanomsmarco-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoMSMARCO",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanomsmarco-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoMSMARCO",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanonfcorpus-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoNFCorpus",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanonfcorpus-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoNFCorpus",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanonq-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoNQ",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanonq-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoNQ",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanoscidocs-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoSCIDOCS",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanoscidocs-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoSCIDOCS",
+   "test_inputs_in_dataset": 400,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanotouche2020-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoTouche2020",
+   "test_inputs_in_dataset": 392,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanobeir--nanotouche2020-score-test-v1": {
+   "dataset": "synthetic_relevance__nanobeir__NanoTouche2020",
+   "test_inputs_in_dataset": 392,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanocoir-noul-test-v1": {
+   "dataset": "synthetic_relevance__nanocoir",
+   "test_inputs_in_dataset": 800,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "synthetic-relevance--nanocoir-score-test-v1": {
+   "dataset": "synthetic_relevance__nanocoir",
+   "test_inputs_in_dataset": 800,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "temporal-nli-choice-test-v1": {
+   "dataset": "temporal_nli",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "tracie-noul-test-v1": {
+   "dataset": "tracie",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "laya--typed-decisions-choice-test-v1": {
+   "dataset": "laya__typed_decisions",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 9,
+   "union_only": 21
+  },
+  "laya--typed-decisions-noul-test-v1": {
+   "dataset": "laya__typed_decisions",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 9,
+   "union_only": 21
+  },
+  "laya--typed-decisions-score-test-v1": {
+   "dataset": "laya__typed_decisions",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 9,
+   "union_only": 21
+  },
+  "ud-ewt-choice-test-v1": {
+   "dataset": "ud_ewt",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 1,
+   "union_only": 0
+  },
+  "winobias-choice-test-v1": {
+   "dataset": "winobias",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "winowhy-noul-test-v1": {
+   "dataset": "winowhy",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  },
+  "wiqa-choice-test-v1": {
+   "dataset": "wiqa",
+   "test_inputs_in_dataset": 100,
+   "exact": 0,
+   "near": 0,
+   "union_only": 0
+  }
+ }
+}

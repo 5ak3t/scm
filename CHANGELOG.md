@@ -7,6 +7,7 @@
 - New documents: [what v1 changed](docs/v1.md); size and release-check figures.
 - 79 readout experiments (thresholds, medians, shrinkage, LoRA scale, option orders, empty-input calibration) did not pass the pre-registered rule; v1 keeps the plain readout.
 - v0 releases are unchanged and still available.
+- Documentation corrections after review: v0 and v1 training-exposure disclosures rebuilt from the retained training pools (confirmed matches separated from approximate candidates, `evaluation_examples` withdrawn for v0), v0 audit report v2 added, the S1MB adapter source used for the submitted runs published in each model repository, and the Score-option behaviour documented in [usage](docs/usage.md).
 
 ## v0 (2026-10-15)
 - First public release: three LoRA adapters (`scm-min-1.7b-v0`, `scm-mid-4b-v0`, `scm-max-14b-v0`) on Qwen3 base models.

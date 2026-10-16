@@ -62,7 +62,7 @@ Each repository holds the model weights (a small add-on to the Qwen3 base model)
 - [How to use the models](docs/usage.md): how to ask a question, how the answer is scored, the 20-option limit.
 - [Training data and licences](docs/data-and-licences.md): sources by group, recorded licences, synthetic tickets, exclusions.
 - [Intended use and limits](docs/intended-use.md).
-- [S1MB submission](docs/s1mb-submission.md) and the [overlap report](docs/s1mb-overlap-report.json).
+- [S1MB submission](docs/s1mb-submission.md) and the [overlap report](docs/s1mb-overlap-report-v2.json) (v0 audit; it separates exact matches from approximate candidates and replaces the [earlier report](docs/s1mb-overlap-report.json)).
 - [Changelog](CHANGELOG.md).
 
 ## Status
