@@ -36,7 +36,7 @@ All figures are percentages (higher is better). The size table uses our own held
 | scm-mid-4b-v1 | 45.9 | 38.2 | 6.3 | 30.2 | 94 of 165 |
 | Jev 1.13 (reference) | 64.6 | 67.2 | 46.9 | 59.6 | 17 of 165 |
 
-*Our own computation from the saved results, ordering by the leaderboard's Borda rule. The shared leaderboard may order differently. v1 results are in open results pull requests awaiting review: 14B https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/38 and 4B https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/40.
+*Our own computation from the saved results, ordering by the leaderboard's Borda rule. The shared leaderboard may order differently. The v1 results are accepted and merged into the S1MB results dataset: 14B https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/38 and 4B https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/40.
 
 **Read the v1 numbers with this in mind.** v1 was trained on the training splits of 65 dataset families that S1MB benchmarks are built from (79 declared "same source family" entries), after removing inputs that matched S1MB test inputs. An audit of the final training pool still finds 304 of 15,609 English test cases with an approximate match, mostly in templated families. These are candidates, not confirmed use of test inputs, and no exact use is known. Compare with models that did not train on these families with care. Details: [docs/s1mb-submission.md](docs/s1mb-submission.md).
 
