@@ -48,10 +48,10 @@ All figures are percentages (higher is better). The size table uses our own held
 | scm-max-14b-v1 | Qwen3-14B-Base | https://huggingface.co/5ak3t/scm-max-14b-v1 |
 | scm-mid-4b-v1 | Qwen3-4B-Base | https://huggingface.co/5ak3t/scm-mid-4b-v1 |
 
-Each repository holds the model weights (a small add-on to the Qwen3 base model), a model card, the training-data lists with source licences, and the prompt format. They are experimental research releases. There is no 1.7B v1 release: it was trained but did not pass our held-out release check ([what v1 changed](docs/v1.md)).
+Each repository holds the model weights (a small add-on to the Qwen3 base model), a model card, the training-data lists with source licences, and the prompt format. They are experimental research releases. There is no 1.7B v1 release: it was trained but did not pass our held-out release check ([how v1 was built and checked](docs/v1.md)).
 
 ## Documents
-- [What v1 changed](docs/v1.md): training data, release check, readout experiments that did not help.
+- [How v1 was built and checked](docs/v1.md): training data, release check, readout experiments that did not help.
 - [Results](docs/results.md): charts and the S1MB summary.
 - [How to use the models](docs/usage.md): how to ask a question, how the answer is scored, option limits.
 - [Training data and licences](docs/data-and-licences.md): sources by group, recorded licences, synthetic tickets, exclusions.

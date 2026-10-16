@@ -1,42 +1,10 @@
-# SCM-max 14B v0 on S1MB English v1
-
-Submission: https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/37 (results dataset pull request, one model folder `5ak3t__scm_max_14b_v0`, 137 result files).
-
-Model: https://huggingface.co/5ak3t/scm-max-14b-v0 at revision `1e983c1a1a386b9a49f04fa219e5b1ff8cd12058` (LoRA on `Qwen/Qwen3-14B-Base` @ `0b0bd3732e2c374d483664439ea334928b65f304`; adapter SHA-256 `2c3f9a495c544ba0ca07f03c1364c28805de8cfe574aeec715af4cf4ca3764ed`).
-
-## Configuration (fixed before any S1MB score)
-fp16 base with the adapter merged, sdpa attention, four option orders averaged, temperature 1, no calibration, input limit 16,384 tokens with overflow rejected, at most 20 candidates per question, 16 cases per call. One H100, 3,589 s. No S1MB label or score was used to choose any setting.
-
-## Coverage
-131 of 137 benchmarks complete. Six (banking77, clinc, gretel-pii, hwu64, massive, mtop) contain questions with more than 20 candidates; the lettered-option format cannot hold them and the adapter rejects them instead of splitting, so all 651 cases (1,104 decisions) are saved as failures. Nothing else failed. The submission is therefore partial and does not qualify for aggregates that need complete coverage.
-
-## Scores (baseline-adjusted, 0 to 100, equal benchmark weights)
-| | Noul (59) | Choice (51 complete of 57) | Score (21) | gen-noul | gen-choice | gen-score |
-|---|---|---|---|---|---|---|
-| SCM-max 14B v0 | 50.09 | 52.9 | 32.31 | 88.00 | 96.71 | 74.07 |
-| Jev 1.13 (pinned reference, same benchmarks) | 64.63 | 65.2 | 46.92 | 99.00 | 98.68 | 91.14 |
-
-The shared leaderboard's choice aggregate is N/A because of the six incomplete benchmarks; the choice figures above are our means over the 51 complete ones. SCM-max is well below the reference. The training-exposure notes below apply to the three typed-decisions benchmarks in particular.
-
-## Training exposure (corrected after review, to the best of our knowledge)
-- Bekko System One and Saihai data were not used by v0. We did not use S1MB test splits for training, prompts, option orders, limits or checkpoint selection; this is our statement, not independently verified, and the audit below shows approximate matches.
-- Input-only audit of the training pool actually used (pool v5, 124,334 records) against the 15,609 English test inputs, with confirmed and approximate matches **separated**: **0 exact matches** (no confirmed use of evaluation inputs) and 41 approximate-match candidates (20 near, 21 weaker pooled). 30 of them are the 100 inputs shared by the three `laya--typed-decisions-*` benchmarks (9 near, 21 weaker); the rest are banking77 2, clinc 1, dbpedia 2, hh-rlhf 2, few-nerd 1, ud-ewt 1 and NanoDBPedia 1 (few-nerd, ud-ewt and NanoDBPedia have no matching source in the pool, cause unknown). An earlier version of this page said 101 cases overlapped and declared `evaluation_examples`; that counted the shared typed-decisions inputs once per benchmark and treated similarity as confirmation. It was withdrawn. Targets were not compared.
-- Declared `same_source_family` (retained train splits): banking77, clinc, dbpedia, go_emotions, AG News, Enron spam, PAWS, OpenBookQA, AQuA-RAT, Civil Comments, HH-RLHF, ContractNLI (via LegalBench), and typed-decisions (the 724 pool records are the train split of `LocalLLaMA/typed-decisions`; an earlier card called them hand-specified). Declared `related_domain`: the three Open-Jev workflow-controls benchmarks whose workflow names also appear among the typed-decisions records (relationship not established, no input match). The pool also holds MathQA, derived from AQuA-RAT. Checklist originals such as ARC, QuaRTz, SNLI and SciTail were on a reserved exclusion list and are not in the pool. Not audited, therefore unknown: Qwen3 pretraining data and anything outside the 53-source pool.
-- The training pool includes 780 synthetic support tickets written by an LLM from deterministic specifications; no other LLM-generated labels were used.
-
-The audit report is `s1mb-overlap-report-v2.json` in the model repository (it replaces `s1mb-overlap-report.json`); the pinned measured revision's card predates this correction.
-
-*Coverage update:* the six wide-choice benchmarks were later measured with the wide-label renderer, so v0 is 137 of 137 complete (task average 45.92); the "partial" wording in this section describes the first submission.
-
----
-
-# Version 1 on S1MB English v1
+# SCM v1 on S1MB English v1
 
 Models: https://huggingface.co/5ak3t/scm-max-14b-v1 (measured revision `b0b58112d57581a86d74054c4c604251a8a7647d`) and https://huggingface.co/5ak3t/scm-mid-4b-v1 (measured revision `39c9a74e96dca1bafd7c3e0b938d3b6476a2db97`). The cards were rewritten after measurement; the adapter weights did not change. Results pull requests (open, awaiting review): 14B https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/38 and 4B https://huggingface.co/datasets/hotchpotch/s1mb-result/discussions/40.
 
 The adapter file used for all submitted runs (renderer v2; identical behaviour to the earlier renderer for questions with up to 20 options) is published in each model repository as `s1mb_adapter/scm_evaluated.py` (sha256 `6eae4afb79c109cf8015d3625054621178a5f1c07f77f6d70645fd954f6584f9`). The adapter shows option descriptions only; numeric Score values are applied by the evaluator through the option id. All 21 English Score benchmarks have evenly spaced, ascending values; 11 write the value in every option description and 10 show ordered descriptions only.
 
-Configuration (fixed before any v1 S1MB score): fp16 base with the adapter merged, four option orders averaged, temperature 1, no calibration, input limit 16,384 tokens with overflow rejected, 16 cases per call, adapter renderer `scm-joint-letters-v2` (up to 255 labels, nothing split or truncated). Each model was measured in three parallel runs of one configuration on one H100 each, 137 of 137 benchmarks complete, zero failed decisions and zero abstentions. The v0 measurements stay unchanged in the earlier pull request.
+Configuration (fixed before any v1 S1MB score): fp16 base with the adapter merged, four option orders averaged, temperature 1, no calibration, input limit 16,384 tokens with overflow rejected, 16 cases per call, adapter renderer `scm-joint-letters-v2` (up to 255 labels, nothing split or truncated). Each model was measured in three parallel runs of one configuration on one H100 each, 137 of 137 benchmarks complete, zero failed decisions and zero abstentions.
 
 ## Training exposure (v1)
-This replaces the v0 statement that Bekko System One data was not used: **v1 did use it** (training splits only, revision 9c673a09, 65 families). The submission declares 79 `same_source_family` entries, each checked against the final retained training inventory (an earlier draft listed 97, including 18 Bekko configs whose candidates were all removed by filtering; those were withdrawn). Inputs matching an S1MB English test input exactly or by 8-word overlap were removed (4,524 candidates). A record-level audit of the final pool still finds **304 test cases with an approximate match** out of 15,609; they are approximate-match candidates, not confirmed uses of evaluation inputs, and the affected entries say so in their notes. The retained training rows are not republished (access recorded as private); what we cannot establish is stated as unknown. v1 also differs from v0 in training on questions with more than 20 options.
+v1 used the Bekko System One dataset (training splits only, revision 9c673a09, 65 families). The submission declares 79 `same_source_family` entries, each checked against the final retained training inventory. Inputs matching an S1MB English test input exactly or by 8-word overlap were removed (4,524 candidates). A record-level audit of the final pool still finds **304 test cases with an approximate match** out of 15,609; they are approximate-match candidates, not confirmed uses of evaluation inputs, and the affected entries say so in their notes. The retained training rows are not republished (access recorded as private); what we cannot establish is stated as unknown. v1 also differs from v0 in training on questions with more than 20 options.

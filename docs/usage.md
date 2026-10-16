@@ -18,7 +18,7 @@ Answer:
 ```
 
 - `<instructions>` is the question text (a system prompt first, if you have one). `<state>` is the text to decide about; a JSON state is inserted as compact JSON text.
-- Options are the option descriptions, in whatever order you choose to show them. Use letters A to T in order.
+- Options are the option descriptions, in whatever order you choose to show them. Use the labels A to Z in order, then the two-letter labels AA, AB, ... for questions with more than 26 options (the exact label rule is in `l87_joint_prompt.py` in each model repository).
 - Question types: **choice** (your K candidates), **noul** (two options, the "false" meaning first and the "true" meaning second, each described in words), **score** (the ordered level descriptions, lowest first).
 
 ## Scoring
@@ -32,9 +32,9 @@ Averaging orders removes most of the letter-position bias; one order alone is us
 
 ## Limits
 - **Score questions:** each option is shown by its description, in level order, and the model returns one probability per option; the numeric value of an option is applied by whoever reads the result (for example an evaluator that takes the expected value), not shown by the adapter. Many Score questions already write the value in the description (for example "3.0: a direct answer"); where they do not, the descriptions are ordered from lowest to highest. Keep your levels evenly spaced and in ascending order, and put the numbers in the descriptions if the scale matters.
-- **Option limit:** v0 adapters handle at most 20 options (letters A to T) and were not trained beyond that. v1 adapters use labels A to Z and then single-token two-letter labels (AA, AB, ...) for up to 255 options; the prompt rule is in `l87_joint_prompt.py` in each repository. Accuracy on very wide questions is lower than on short ones.
-- The models were trained on prompts truncated to 1,024 tokens. Longer prompts work mechanically (we ran up to about 15,000 tokens) but are outside the training distribution and are not expected to be as accurate.
+- **Option limit:** up to 255 options per question (labels A to Z, then single-token two-letter labels). Accuracy on very wide questions is lower than on short ones.
+- The models were trained on prompts truncated to 3,072 tokens. Longer prompts work mechanically (the S1MB runs allowed up to 16,384 tokens) but are outside the training distribution and are not expected to be as accurate.
 - The released probabilities are the raw softmax. No temperature, calibration or abstention is applied, and no coverage guarantee comes with these weights.
 
 ## Choosing a size
-`scm-max-14b-v0` is the most accurate by a clear margin; `scm-mid-4b-v0` is a quarter of the cost; `scm-min-1.7b-v0` is below our own development thresholds and mainly shows the scaling trend. See [results](results.md).
+`scm-max-14b-v1` is the most accurate by a clear margin (S1MB task average 55.5 against 30.2); `scm-mid-4b-v1` is a quarter of the cost. There is no 1.7B release. See [results](results.md).
