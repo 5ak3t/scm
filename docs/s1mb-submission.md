@@ -18,13 +18,15 @@ fp16 base with the adapter merged, sdpa attention, four option orders averaged, 
 
 The shared leaderboard's choice aggregate is N/A because of the six incomplete benchmarks; the choice figures above are our means over the 51 complete ones. SCM-max is well below the reference. The training-exposure notes below apply to the three typed-decisions benchmarks in particular.
 
-## Training exposure (submitter's audit, to the best of our knowledge)
-- Bekko System One and Saihai data were not used. No S1MB test input, label or score was used for training, prompts, option orders, limits or checkpoint selection.
-- Input-only overlap audit (normalised exact match, or at least half of the 8-word shingles present in the training pool) against the English test inputs: 101 cases overlap. 30 of 100 inputs in each of `laya--typed-decisions-{choice,noul,score}-test-v1` also occur in training (the pool contains the `LocalLLaMA/typed-decisions` train split), declared as `evaluation_examples`. Targets were not compared. Single-case overlaps occur in banking77, clinc, dbpedia, few-nerd, hh-rlhf, nanodbpedia and ud-ewt.
-- Declared `same_source_family`: banking77, clinc, dbpedia, go_emotions, AG News, Enron spam, PAWS, OpenBookQA, AQuA-RAT, Civil Comments, HH-RLHF, ContractNLI (via LegalBench). Related domains (NLI, moderation, sentiment, legal, spam) are not enumerated, and the Qwen3 pretraining data is not audited.
+## Training exposure (corrected after review, to the best of our knowledge)
+- Bekko System One and Saihai data were not used by v0. We did not use S1MB test splits for training, prompts, option orders, limits or checkpoint selection; this is our statement, not independently verified, and the audit below shows approximate matches.
+- Input-only audit of the training pool actually used (pool v5, 124,334 records) against the 15,609 English test inputs, with confirmed and approximate matches **separated**: **0 exact matches** (no confirmed use of evaluation inputs) and 41 approximate-match candidates (20 near, 21 weaker pooled). 30 of them are the 100 inputs shared by the three `laya--typed-decisions-*` benchmarks (9 near, 21 weaker); the rest are banking77 2, clinc 1, dbpedia 2, hh-rlhf 2, few-nerd 1, ud-ewt 1 and NanoDBPedia 1 (few-nerd, ud-ewt and NanoDBPedia have no matching source in the pool, cause unknown). An earlier version of this page said 101 cases overlapped and declared `evaluation_examples`; that counted the shared typed-decisions inputs once per benchmark and treated similarity as confirmation. It was withdrawn. Targets were not compared.
+- Declared `same_source_family` (retained train splits): banking77, clinc, dbpedia, go_emotions, AG News, Enron spam, PAWS, OpenBookQA, AQuA-RAT, Civil Comments, HH-RLHF, ContractNLI (via LegalBench), and typed-decisions (the 724 pool records are the train split of `LocalLLaMA/typed-decisions`; an earlier card called them hand-specified). Declared `related_domain`: the three Open-Jev workflow-controls benchmarks whose workflow names also appear among the typed-decisions records (relationship not established, no input match). The pool also holds MathQA, derived from AQuA-RAT. Checklist originals such as ARC, QuaRTz, SNLI and SciTail were on a reserved exclusion list and are not in the pool. Not audited, therefore unknown: Qwen3 pretraining data and anything outside the 53-source pool.
 - The training pool includes 780 synthetic support tickets written by an LLM from deterministic specifications; no other LLM-generated labels were used.
 
-The audit report is `s1mb-overlap-report.json` in the model repository.
+The audit report is `s1mb-overlap-report-v2.json` in the model repository (it replaces `s1mb-overlap-report.json`); the pinned measured revision's card predates this correction.
+
+*Coverage update:* the six wide-choice benchmarks were later measured with the wide-label renderer, so v0 is 137 of 137 complete (task average 45.92); the "partial" wording in this section describes the first submission.
 
 ---
 

@@ -33,7 +33,7 @@ All 137 benchmarks complete with zero failed decisions for all three SCM rows (v
 ### Earlier result: scm-max-14b-v0 as first submitted
 ![S1MB scores](figures/s1mb.svg)
 
-131 of 137 benchmarks complete at first submission; the six wide-choice benchmarks (more than 20 options) failed by design. Scores are baseline-adjusted (0 to 100) against the pinned Jev 1.13 results; SCM-max is clearly below it, and its three typed-decisions benchmarks are inflated by training overlap. Details and the full disclosure: [S1MB submission](s1mb-submission.md).
+131 of 137 benchmarks complete at first submission; the six wide-choice benchmarks (more than 20 options) failed by design. Scores are baseline-adjusted (0 to 100) against the pinned Jev 1.13 results; SCM-max is clearly below it, and its three typed-decisions benchmarks share a source dataset with the training pool (30 of their 100 inputs are approximate-match candidates, none an exact match). Details and the full disclosure: [S1MB submission](s1mb-submission.md).
 
 | | Noul | Choice (51 of 57) | Score | gen-noul | gen-choice | gen-score |
 |---|---|---|---|---|---|---|
